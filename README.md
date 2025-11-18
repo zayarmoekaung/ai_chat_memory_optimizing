@@ -2,77 +2,70 @@
 
 ## Overview
 
-This project is designed to test the concepts for optimizing prompts for an AI chatbot client. The main goal is to minimize token size while preventing or reducing memory loss. The chatbot operates in a persistent world where characters have long-term memories and identities that evolve over time.
+AI Chat Memory Optimizing is a project that explores optimizing prompts for AI chatbot clients, focusing on minimizing token size while preventing memory loss. This toolkit enables dynamic character management and prompt optimization to sustain long-term chatbot interactions without significant loss of context.
 
 ## Features
 
-- **Dynamic Character Management**: Characters can be created and updated with reflections and facts.
-- **Prompt Optimization**: Utilizes various prompts to guide the AI's responses while minimizing token usage.
-- **Memory Maintenance**: Regularly updates character reflections and extracts important facts to ensure memory retention.
-- **Web Interface**: Provides a simple web interface to visualize events and character states.
+- **Dynamic Character Management:** Create and update characters with evolving reflections and facts.
+- **Prompt Optimization:** Use modular prompts to guide AI responses while minimizing token usage.
+- **Memory Maintenance:** Regular character reflection updates and fact extraction for robust contextual memory.
+- **Web Interface:** A simple interface to visualize events and character states.
 
 ## Project Structure
 
 ```
 source/
-├── app.py                # Main application file
-├── world.db              # SQLite database for storing character data
-├── agents/               # Contains agent-related logic
-│   └── kobold.py         # Interface for interacting with the Kobold API
-├── controllers/          # Contains route handlers for the web interface
+├── app.py                  # Main application file
+├── world.db                # SQLite database for storing character data
+├── agents/
+│   └── kobold.py           # Interface for Kobold API
+├── controllers/
 │   ├── events.py
 │   └── home.py
-├── database/             # Database connection and initialization
+├── database/
 │   └── db.py
-├── helpers/              # Utility functions
-│   ├── json_helper.py    # JSON extraction helper
-│   └── memory_helper.py   # Memory management functions
-├── prompts/              # Prompt templates for the AI
-│   ├── __init__.py       # Loads prompt templates
-│   ├── decide_action.txt # Prompt for deciding actions
-│   ├── extract_facts.txt # Prompt for extracting facts
-│   ├── system.txt        # System prompt for character context
-│   └── update_reflection.txt # Prompt for updating character reflections
-└── templates/            # HTML templates for the web interface
+├── helpers/
+│   ├── json_helper.py      # JSON extraction helper
+│   └── memory_helper.py    # Memory management functions
+├── prompts/
+│   ├── __init__.py         # Loads prompt templates
+│   ├── decide_action.txt   # Prompt for deciding actions
+│   ├── extract_facts.txt   # Prompt for extracting facts
+│   ├── system.txt          # System prompt for context
+│   └── update_reflection.txt # Reflection prompt
+└── templates/
     └── index.html
 ```
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd ai_chat_memory_optimizing
-   ```
-
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
+    ```bash
+    git clone <repository-url>
+    cd ai_chat_memory_optimizing
+    ```
+2. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
 3. Run the application:
-   ```bash
-   python source/app.py
-   ```
-
-4. Open your web browser and navigate to `http://127.0.0.1:5000`.
+    ```bash
+    python source/app.py
+    ```
+4. Open your browser to `http://127.0.0.1:5000`.
 
 ## Usage
 
-- Characters are initialized with basic personalities and can evolve through interactions.
-- The chatbot generates responses based on the current state of the world, including character reflections and recent events.
-- The web interface displays the timeline of events and character information.
+- Characters are initialized with personalities and evolve with interactions.
+- Responses are generated based on the world's state, including reflections and events.
+- The web interface displays events and character information.
 
 ## Prompt Management
 
-The project includes a module for managing prompts used by the AI chatbot. The prompts are loaded dynamically from text files, allowing for easy updates and modifications. 
+Prompts for the AI are loaded dynamically from text files in the `source/prompts/` directory. This structure allows for easy modification and addition of new prompt templates.
 
-### Prompt Loader
-
-The `load_prompt` function is defined in `source/prompts/__init__.py`:
-
+Example prompt loader (`prompts/__init__.py`):
 ```python
-# filepath: ai_chat_memory_optimizing/source/prompts/__init__.py
 def load_prompt(name): 
     return open(f"prompts/{name}").read()
 
@@ -82,19 +75,17 @@ FACT_PROMPT = load_prompt("extract_facts.txt")
 REFLECT_PROMPT = load_prompt("update_reflection.txt")
 ```
 
-#### Prompts Loaded
+### Loaded Prompts
 
-- **SYSTEM_PROMPT**: Loaded from `system.txt`, this prompt provides the context for the AI's behavior and personality.
-- **DECIDE_PROMPT**: Loaded from `decide_action.txt`, this prompt helps the AI determine its next actions based on the current state.
-- **FACT_PROMPT**: Loaded from `extract_facts.txt`, this prompt is used to extract relevant facts from the conversation.
-- **REFLECT_PROMPT**: Loaded from `update_reflection.txt`, this prompt allows the AI to update its reflections based on interactions.
-
-This modular approach to prompt management ensures that the chatbot can be easily adapted and improved over time.
+- **system.txt:** Main context for AI behavior
+- **decide_action.txt:** Determines next actions from state
+- **extract_facts.txt:** Extracts facts from conversations
+- **update_reflection.txt:** Updates character reflections
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or features.
+Contributions, issues, and feature requests are welcome! Please open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
