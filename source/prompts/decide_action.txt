@@ -1,0 +1,10 @@
+What do you do in the next 10–15 minutes, {name}?
+
+Answer with ONLY a single valid JSON object and nothing else.
+Do not use markdown. Do not add explanations.
+```JSON
+  "thought": "your private thinking (1–2 sentences)",
+  "action": "short verb phrase",
+  "target": "person/place/thing or empty string",
+  "dialogue": "exact words you say (or empty string)",
+  "narration": "one short third-person sentence of what visibly happens"

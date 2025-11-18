@@ -1,0 +1,6 @@
+Write a new 3–6 sentence life summary for {name} that completely replaces the old one.
+Include current life stage, key relationships, defining events, and active goals.
+Do not exceed 120 words.
+
+Old summary (for context only):
+{{reflection}}

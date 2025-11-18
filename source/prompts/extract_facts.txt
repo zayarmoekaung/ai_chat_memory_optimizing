@@ -1,0 +1,5 @@
+Extract 1–4 new permanent facts that {name} should never forget from the narration and recent events below.
+Output only bullet points, no numbers, no extra text.
+
+Narration: {{narration}}
+{{recent}}
